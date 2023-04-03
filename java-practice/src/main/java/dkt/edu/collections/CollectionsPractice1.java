@@ -21,7 +21,7 @@ class Car implements Comparable<Car> {
 
   @Override
   public int compareTo(Car c) {
-    return c.length - thiss.length;
+    return c.length - this.length;
   }
 
   @Override

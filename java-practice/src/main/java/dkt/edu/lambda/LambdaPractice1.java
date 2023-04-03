@@ -43,30 +43,30 @@ int[] emptyArr() {
  */
 public class LambdaPractice1 {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         //(1)
         IntBinaryOperator ibo = (int a, int b) -> a > b ? a : b;
         int num = ibo.applyAsInt(10, 30);
         System.out.println(num);
 
         //(2)
-        BiConsumer<String, Integer> p2 = (name, i) -> System.out.println(name+"="+i);
+        BiConsumer<String, Integer> p2 = (name, i) -> System.out.println(name + "=" + i);
         p2.accept("용욱", 100);
         System.out.println(p2);
 
         //(3)
-        IntUnaryOperator p3 = x -> x*x;
+        IntUnaryOperator p3 = x -> x * x;
         int num3 = p3.applyAsInt(3);
         System.out.println(num3);
 
         //(4)
-        Supplier<Integer> p4 = ()-> (int)(Math.random()*6)+1;
+        Supplier<Integer> p4 = () -> (int) (Math.random() * 6) + 1;
         System.out.println(p4.get());
 
         //(5)
         Function<int[], Integer> p5 = (int[] arr) -> {
             int sum = 0;
-            for(int k : arr){
+            for (int k : arr) {
                 sum += k;
             }
             return sum;
