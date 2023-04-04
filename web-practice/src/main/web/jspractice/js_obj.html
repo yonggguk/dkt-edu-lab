@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    let obj = Object.create(null, {
+        x: {value: 100, enumerable: true},
+        y: {value: 200, enumerable: true},
+        z: {value: 'test', enumerable:true},
+        k: {value: 300}
+    });
+    document.write(obj.x);
+    document.write(obj.y);
+    document.write(obj.z);
+    document.write(obj.k);
+    for(const o in obj){
+        document.write(o); //열거 속성을 주지 않은 k는 for in 문으로 접근할 수 없다.
+    }
+    Object.getPrototypeOf(obj);
+</script>
+</body>
+</html>
