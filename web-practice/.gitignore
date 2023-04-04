@@ -146,9 +146,7 @@ replay_pid*
 *.csr
 *.css
 *.htm
-*.html
 *.js
-*.jsp
 *.php
 *.rss
 *.wasm
