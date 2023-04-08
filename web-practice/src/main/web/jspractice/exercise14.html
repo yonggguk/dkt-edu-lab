@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+    <style>
+      h1 {
+        text-align: center;
+      }
+
+      div {
+        text-align: center;
+      }
+
+      section {
+        text-align: center;
+      }
+    </style>
+</head>
+<body>
+<h1>김용욱의 HTML5 API 실습</h1>
+<div>
+    <button onclick="savePic()">저장하기</button>
+    <button onClick="restorePic()">읽어오기</button>
+    <button onClick="deletePic()">삭제하기</button>
+</div>
+<hr>
+
+<section id="canvasbox">
+    <canvas id="canvas" width="300" height="300"
+            style="border: 1px solid black;">
+        Your browser doesn't support the canvas element
+    </canvas>
+</section>
+<script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    //왼쪽 귀
+    ctx.beginPath();
+    ctx.arc(76, 47, 10, 0, Math.PI * 2, false);
+    ctx.lineWidth = 2;
+    //ctx.stroke();
+
+	//왼쪽 귀 test
+	ctx.beginPath();
+	ctx.moveTo(72, 61);
+	ctx.quadraticCurveTo(67, 47, 70, 43);
+	ctx.quadraticCurveTo(70, 39, 80, 37);
+	ctx.quadraticCurveTo(80, 36, 88, 41);
+	ctx.quadraticCurveTo(88, 42, 91, 54);
+	ctx.stroke();
+
+    //오른쪽 귀
+    ctx.beginPath();
+    ctx.arc(128, 48, 10, 0, Math.PI * 2, false);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+    //머리
+    ctx.beginPath();
+    ctx.fillStyle = 'white';
+    ctx.arc(100, 100, 50, 0, Math.PI * 2, false);
+    ctx.lineWidth = 2;
+    ctx.fill();
+    ctx.stroke();
+
+    ctx.fillStyle = 'black';
+
+    //왼쪽눈
+    ctx.beginPath();
+    ctx.arc(88, 81, 2, 0, Math.PI * 2, false);
+    ctx.fill();
+    ctx.stroke();
+
+    //오른쪽눈
+    ctx.beginPath();
+    ctx.arc(112, 81, 2, 0, Math.PI * 2, false);
+    ctx.fill();
+    ctx.stroke();
+
+    //코
+    ctx.beginPath();
+    ctx.arc(101, 100, 2, 0, Math.PI * 2, false);
+    ctx.fill();
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    //입
+    ctx.beginPath();
+    ctx.arc(88, 99, 13, 0, Math.PI / 2);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(101, 99);
+    ctx.quadraticCurveTo(105, 120, 118, 105);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(115, 101);
+    ctx.lineTo(120, 106);
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    //test
+    ctx.beginPath();
+    ctx.fillStyle = 'white';
+    ctx.ellipse(100, 147, 55, 30, 0, 0, Math.PI * 2);
+    ctx.lineWidth = 0;
+    ctx.fill();
+    ctx.strokeStyle = 'white';
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(142, 126);
+    ctx.quadraticCurveTo(149, 158, 142, 185);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    ctx.beginPath();
+    ctx.moveTo(58, 126);
+    ctx.quadraticCurveTo(50, 158, 58, 185);
+    ctx.strokeStyle = 'black';
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    function savePic() {
+        alert(canvas.toDataURL());
+        window.localStorage.setItem("canvasPic", canvas.toDataURL());
+    }
+
+    function restorePic() {
+        const img = new Image();
+        img.src = window.localStorage.canvasPic;
+        img.onload = function () {
+            ctx.drawImage(img, 0, 0);
+        }
+    }
+
+    function deletePic() {
+        ctx.clearRect(0, 0, 600, 300);
+    }
+
+    canvas.onclick = function (event) {
+        const x = event.clientX - canvas.offsetLeft;
+        const y = event.clientY - canvas.offsetTop;
+        console.log(x, y);
+    }
+</script>
+</body>
+</html>
